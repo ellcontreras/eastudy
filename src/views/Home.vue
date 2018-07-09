@@ -1,18 +1,46 @@
 <template>
-  <div class="home">
-    <img src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div>
+    <vs-row>
+      <vs-col vs-w="6">
+        <CategoryCard name="Hello" />
+      </vs-col>
+      <vs-col vs-w="6">
+        <CategoryCard name="World!" />
+      </vs-col>
+    </vs-row>
+    <vs-row>
+      <vs-col vs-w="6">
+        <CategoryCard name="Hello" />
+      </vs-col>
+      <vs-col vs-w="6">
+        <CategoryCard name="World!" />
+      </vs-col>
+    </vs-row>
+    <vs-row>
+      <vs-col vs-w="6">
+        <CategoryCard name="Hello" />
+      </vs-col>
+      <vs-col vs-w="6">
+        <CategoryCard name="World!" />
+      </vs-col>
+    </vs-row>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import CategoryCard from '@/components/CategoryCard.vue'
 
 export default {
   name: 'home',
   components: {
-    HelloWorld
+    CategoryCard
   }
 }
 </script>
+
+<style>
+.vs-row {
+  margin-bottom: 1em;
+}
+</style>
+

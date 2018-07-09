@@ -6,7 +6,18 @@ import './registerServiceWorker'
 import Vuesax from 'vuesax'
 import 'vuesax/dist/vuesax.css'
 
-import 'material-icons/iconfont/material-icons.css';
+import 'material-icons/iconfont/material-icons.css'
+
+import firebase from 'firebase';
+
+firebase.initializeApp({
+  apiKey: "AIzaSyD5YCXnqWky35U5KQv6y_YAqlza60RrpGo",
+  authDomain: "noteapp-c0405.firebaseapp.com",
+  databaseURL: "https://noteapp-c0405.firebaseio.com",
+  projectId: "noteapp-c0405",
+  storageBucket: "noteapp-c0405.appspot.com",
+  messagingSenderId: "900321311281"
+})
 
 Vue.config.productionTip = false
 
