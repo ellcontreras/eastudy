@@ -6,6 +6,12 @@
                 <label>Titulo</label>
                 <input type="text" v-model="title" placeholder="De que color es el caballo de napoleon?"/>
                 <br><br>
+                <label>Categoria</label>
+                <vs-select v-model="category">
+                    <vs-select-item vs-value="ciencias-naturales" vs-text="Ciencias Naturales"/>
+                    <vs-select-item vs-value="matematicas" vs-text="Matemáticas"/>
+                </vs-select>
+                <br><br>
                 <label>Contenido</label>
                 <textarea v-model="content" placeholder="Habia un caballo bonito..."></textarea>
             </vs-col>
@@ -41,6 +47,7 @@ export default {
         return {
             title: '',
             content: '',
+            category: '',
             answers: [
                 {id: 0, name: '', isTrue: true},
                 {id: 1, name: '', isTrue: false},
@@ -63,7 +70,8 @@ export default {
                 dbRef.set({
                     title: this.title,
                     content: this.content,
-                    answers: this.answers
+                    answers: this.answers,
+                    category: this.category
                 }).then(res => {
                     this.$vs.notify({
                         title: 'Exito!',
@@ -83,14 +91,14 @@ export default {
             } else {
                 this.$vs.notify({
                     title: 'Alerta',
-                    text: 'No debes de dejar las respuestas ni el titulo en blanco',
+                    text: 'No debes de dejar las respuestas, el titulo ni la categoria en blanco',
                     color: 'warning'
                 })
             }
         },
 
         checkNullAnswers () {
-            return this.answers[0].name && this.answers[1].name && this.answers[2].name
+            return this.answers[0].name && this.answers[1].name && this.answers[2].name && this.category
         }
     }
 }
