@@ -26,7 +26,7 @@ export default new Router({
       component: Question
     },
     {
-      path: ['/404', '*'],
+      path: '/404',
       name: '404 Page not found',
       component: PageNotFound
     },
