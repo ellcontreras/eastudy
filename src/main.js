@@ -28,7 +28,10 @@ Vue.use(Vuesax, {
       success:'rgb(23, 201, 100)',
       danger:'rgb(242, 19, 93)',
       warning:'rgb(255, 130, 0)',
-      dark:'rgb(36, 33, 69)'
+      dark:'rgb(36, 33, 69)',
+      green: '#45bf55',
+      yellow: '#edad1e',
+      blue: '#4472c4'
     }
   }
 })
