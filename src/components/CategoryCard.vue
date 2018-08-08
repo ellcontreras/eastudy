@@ -1,6 +1,6 @@
 <template>
-    <vs-card vs-color="secondary">
-        <vs-card-header :vs-title="name" vs-background-color="danger" :vs-fill="true"/>
+    <vs-card vs-color="secondary" :id="'category'+name">
+        <vs-card-header :vs-title="name" :vs-background-color="color" :vs-fill="true"/>
         <vs-card-body>
             {{ name }}
         </vs-card-body>
@@ -11,7 +11,8 @@
 export default {
     name: 'CategoryCard',
     props: {
-        name: String
+        name: String,
+        color: String
     }
 }
 </script>
