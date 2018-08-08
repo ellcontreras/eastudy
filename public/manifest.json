@@ -1,6 +1,6 @@
 {
   "name": "Eastudy",
-  "short_name": "EASY",
+  "short_name": "Eastudy",
   "icons": [
     {
       "src": "/img/icons/android-chrome-192x192.png",
@@ -15,6 +15,6 @@
   ],
   "start_url": "/index.html",
   "display": "standalone",
-  "background_color": "#000000",
-  "theme_color": "#5b3cc4"
+  "background_color": "#C092E9",
+  "theme_color": "#6E33A5"
 }
