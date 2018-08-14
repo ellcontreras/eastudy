@@ -25,7 +25,6 @@ export default {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: #2c3e50;
 }
 #main-container {
   margin-top: 1em;
@@ -56,5 +55,11 @@ label {
 .text-left {
   text-align: left;
 }
-
+.card-title {
+  color: white !important;
+  font-weight: 500;
+}
+ul, .ul-tabs{
+    list-style-type: none !important;
+}
 </style>
