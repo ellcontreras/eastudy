@@ -1,6 +1,5 @@
 <template>
     <vs-card vs-color="secondary">
-        <vs-card-header :vs-title="name" vs-background-color="success" :vs-fill="true"/>
         <vs-card-media :vs-media="img"></vs-card-media>        
         <vs-card-body>
             <span>
