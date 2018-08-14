@@ -4,6 +4,8 @@ import Home from './views/Home.vue'
 import AddQuestion from './views/Add-question.vue'
 import Question from './views/Question'
 import PageNotFound from './views/PageNotFound'
+import Login from './views/Login'
+import Profile from './views/Profile'
 
 Vue.use(Router)
 
@@ -14,6 +16,16 @@ export default new Router({
       path: '/',
       name: 'home',
       component: Home
+    },
+    {
+      path: '/profile/:uid',
+      name: 'Profile',
+      component: Profile
+    },
+    {
+      path: '/login',
+      name: 'login',
+      component: Login
     },
     {
       path: '/add-question',
