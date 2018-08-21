@@ -8,7 +8,9 @@
 			</h2>
 		</div>
 		<div style="justify-content: flex-end;">
-			<vs-button vs-color-text="rgb(255, 255, 255)" vs-color="rgba(255, 255, 255, 0.3)" vs-type="flat" >Preguntas</vs-button>
+			<router-link to="/questions">
+				<vs-button vs-color-text="rgb(255, 255, 255)" vs-color="rgba(255, 255, 255, 0.3)" vs-type="flat" >Preguntas</vs-button>
+			</router-link>
 			<vs-button vs-color-text="rgb(255, 255, 255)" vs-color="rgba(255, 255, 255, 0.3)" vs-type="flat" >Quiz</vs-button>
 			<router-link to='/login' v-if="!loged">
 				<vs-button vs-color-text="rgb(255, 255, 255)" vs-color="rgba(255, 255, 255, 0.3)" vs-type="flat" >
