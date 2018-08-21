@@ -88,6 +88,17 @@ export default {
                         color: 'danger'
                     })
                 })
+
+                firebase.firestore().collection('userActivity').add({
+                    content: "Ha agregado una nueva pregunta",
+                    date: new Date(),
+                    title: "Creación de pregunta",
+                    uid: firebase.auth().currentUser.uid
+                }).then(res => {
+                    console.log(res);
+                }).catch(error => {
+                    console.log(error);
+                });
             } else {
                 this.$vs.notify({
                     title: 'Alerta',
