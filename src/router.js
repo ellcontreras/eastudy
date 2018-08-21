@@ -7,6 +7,7 @@ import Questions from './views/Questions.vue'
 import PageNotFound from './views/PageNotFound.vue'
 import Login from './views/Login.vue'
 import Profile from './views/Profile.vue'
+import Category from './views/Category.vue'
 
 Vue.use(Router)
 
@@ -42,6 +43,11 @@ export default new Router({
       path: '/questions',
       name: 'questions view',
       component: Questions
+    },
+    {
+      path: '/category/:name',
+      name: 'category view',
+      component: Category
     },
     {
       path: '/404',
