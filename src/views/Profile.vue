@@ -53,39 +53,39 @@ export default {
     },
     beforeCreate () {
         axios.get(`${url.url}api/user/get/${this.$route.params.uid}`).then(res => {
-            this.user = res.data.user
+            this.user = res.data.user;
         }).catch(error => {
-            console.log(error)
-        })
+            console.log(error);
+        });
 
         try {
-            this.uid = this.$route.params.uid
-            const db = firebase.firestore()
-            const settings = {timestampsInSnapshots: true}
-            db.settings(settings)
+            this.uid = this.$route.params.uid;
+            const db = firebase.firestore();
+            const settings = {timestampsInSnapshots: true};
+            db.settings(settings);
 
-            var activityRef = db.collection('userActivity')
+            var activityRef = db.collection('userActivity');
 
             activityRef.where('uid', "==", this.uid).get().then(res => {
                 res.forEach(res => {
                     this.activities.push({
                         id: res.id,
                         data: res.data()
-                    })
+                    });
                 })
             }).catch(error => {
-                console.log(error)
+                console.log(error);
             })
         } catch(error) {
-            console.log("Error:", error)
+            console.log("Error:", error);
         }
     },
     filters: {
         isNull (obj) {
             if (obj.length === 0) {
-                return "No se ha encontrado nada"
+                return "No se ha encontrado nada";
             } else {
-                return obj
+                return obj;
             }
         }
     }
