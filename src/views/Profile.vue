@@ -23,9 +23,15 @@
             </vs-tab>
             <vs-tab vs-label="Preguntas">
                 <h2>Preguntas</h2>
-                <div>
-                    {{ questions | isNull }}
-                </div>
+                <vs-list>
+                    <router-link v-for="question of questions" :key="question.uid" 
+                        :to="`\/question\/${question.uid}`">
+                        <br>
+                        <vs-list-item :vs-title="question.data.title"></vs-list-item>
+                        <br>
+                        <hr>
+                    </router-link>
+                </vs-list>
             </vs-tab>
         </vs-tabs>
     </div>
@@ -35,7 +41,7 @@
 import firebase from 'firebase'
 import axios from 'axios'
 import Activity from '@/components/Activity'
-import url from '../utils/utils'
+import url from '../utils/utils.js';
 
 export default {
     name: 'Profile',
@@ -51,15 +57,25 @@ export default {
     components: {
         Activity
     },
-    beforeCreate () {
-        axios.get(`${url.url}api/user/get/${this.$route.params.uid}`).then(res => {
+    beforeMount () {
+        this.uid = this.$route.params.uid;
+
+        axios.get(`${url.url}api/user/get/${this.uid}`).then(res => {
             this.user = res.data.user;
         }).catch(error => {
             console.log(error);
         });
 
+        firebase.database().ref('/questions').orderByChild('userUID').equalTo(this.uid).on('value', res => {
+            res.forEach(snap => {
+                this.questions.push({
+                    uid: snap.key,
+                    data: snap.val()
+                });
+            });
+        });
+
         try {
-            this.uid = this.$route.params.uid;
             const db = firebase.firestore();
             const settings = {timestampsInSnapshots: true};
             db.settings(settings);
@@ -72,7 +88,7 @@ export default {
                         id: res.id,
                         data: res.data()
                     });
-                })
+                });
             }).catch(error => {
                 console.log(error);
             })
