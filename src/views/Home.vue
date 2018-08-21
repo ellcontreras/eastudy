@@ -12,14 +12,11 @@
     <vs-divider></vs-divider>
     <vs-row>
       <h2 class="text-center">Categorias de estudio</h2>
-      <vs-col vs-w="4">
+      <vs-col vs-w="6">
         <CategoryCard name="Ciencias Naturales" color="green" />
       </vs-col>
-      <vs-col vs-w="4">
-        <CategoryCard name="Economia" color="yellow" />
-      </vs-col>
-      <vs-col vs-w="4">
-        <CategoryCard name="Computación" color="blue" />
+      <vs-col vs-w="6">
+        <CategoryCard name="Matemáticas" color="yellow" />
       </vs-col>
     </vs-row>
   </div>
