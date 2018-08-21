@@ -19,6 +19,7 @@
                     <Activity :title="activity.data.title"
                         :content="activity.data.content"
                         :date="activity.data.date" />
+                        <br>
                 </div>
             </vs-tab>
             <vs-tab vs-label="Preguntas">
@@ -89,6 +90,8 @@ export default {
                         data: res.data()
                     });
                 });
+
+                this.activities.reverse();
             }).catch(error => {
                 console.log(error);
             })
