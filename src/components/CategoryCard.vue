@@ -1,10 +1,12 @@
 <template>
-    <vs-card vs-color="secondary" :id="'category'+name">
-        <vs-card-header :vs-title="name" :vs-background-color="color" :vs-fill="true"/>
-        <vs-card-body>
-            {{ name }}
-        </vs-card-body>
-    </vs-card>
+    <router-link :to="'/category/'+name">
+        <vs-card vs-color="secondary" :id="'category'+name">
+            <vs-card-header :vs-title="name" :vs-background-color="color" :vs-fill="true"/>
+            <vs-card-body>
+                {{ name }}
+            </vs-card-body>
+        </vs-card>
+    </router-link>
 </template>
 
 <script>
