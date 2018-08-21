@@ -41,7 +41,7 @@ export default {
             userAnswer: ''
         }
     },
-    beforeCreate () {
+    beforeMount () {
         firebase.database().ref(`/questions/${this.$route.params.uid}`).on('value', snap => {
             this.title = snap.val().title
             this.content = snap.val().content
