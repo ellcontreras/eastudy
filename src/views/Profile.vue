@@ -18,7 +18,8 @@
                 <div v-for="activity in activities" :key="activity.id">
                     <Activity :title="activity.data.title"
                         :content="activity.data.content"
-                        :date="activity.data.date" />
+                        :date="activity.data.date"
+                        img="../assets/questionActivity.png"/>
                         <br>
                 </div>
             </vs-tab>
@@ -73,6 +74,11 @@ export default {
                     uid: snap.key,
                     data: snap.val()
                 });
+
+                if (!snap.val().title.includes("question") || !snap.val().title.includes("pregunta")) {
+                    this.questions[this.questions.length - 1].data.img = "../assets/questionActivity.png";
+                    console.log(this.questions[0].data);
+                }
             });
         });
 
