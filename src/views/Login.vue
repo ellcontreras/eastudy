@@ -1,11 +1,11 @@
 <template>
-    <vs-card class="text-center">
-        <vs-card-body>
-            <h1>Inicia Sesión</h1>
+    <div class="card has-text-centered">
+        <div class="card-content">
+            <h1 class="title is-1">Inicia Sesión</h1>
             <br>
             <Login></Login>
-        </vs-card-body>
-    </vs-card>
+        </div>
+    </div>
 </template>
 
 <script>
