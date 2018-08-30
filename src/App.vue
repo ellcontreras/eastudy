@@ -1,11 +1,9 @@
 <template>
   <div id="app">
     <Navbar />
-    <vs-row id="main-container" vs-type="flex" vs-justify="center" vs-align="center">
-      <vs-col vs-w="8">
-        <router-view/>
-      </vs-col>
-    </vs-row>
+    <div class="container" id="main-container" vs-type="flex" vs-justify="center" vs-align="center">
+        <router-view/>      
+    </div>
   </div>
 </template>
 

@@ -1,24 +1,24 @@
 <template>
   <div>
-    <vs-row>
-      <h1 class="text-center">Quizes de la semana</h1>
-      <vs-col vs-w="6">
+    <h1 class="title is-1 has-text-centered">Quizes de la semana</h1>
+    <div class="columns">
+      <div class="column">
         <QuizCard name="Quimica" img="http://1.bp.blogspot.com/-VWiC0EBxi2o/UiKDeM-jaxI/AAAAAAAAND8/4AlixpFPVzw/s1600/fumigacion_en_avion.jpg" />
-      </vs-col>
-      <vs-col vs-w="6">
+      </div>
+      <div class="column">
         <QuizCard name="Fisica" img="https://trinoceronte.files.wordpress.com/2014/12/thumb.jpg" />
-      </vs-col>
-    </vs-row>
-    <vs-divider></vs-divider>
-    <vs-row>
-      <h2 class="text-center">Categorias de estudio</h2>
-      <vs-col vs-w="6">
+      </div>
+    </div>
+    <hr>
+    <h2 class="subtitle is-2 has-text-centered">Categorias de estudio</h2>
+    <div class="columns">
+      <div class="column">
         <CategoryCard name="Ciencias Naturales" color="green" />
-      </vs-col>
-      <vs-col vs-w="6">
+      </div>
+      <div class="column">
         <CategoryCard name="Matemáticas" color="yellow" />
-      </vs-col>
-    </vs-row>
+      </div>
+    </div>
   </div>
 </template>
 

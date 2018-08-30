@@ -1,11 +1,15 @@
 <template>
     <router-link :to="'/category/'+name">
-        <vs-card vs-color="secondary" :id="'category'+name">
-            <vs-card-header :vs-title="name" :vs-background-color="color" :vs-fill="true"/>
-            <vs-card-body>
+        <div class="card">
+            <div class="card-header">
+                <div class="card-header-title">
+                    {{ name }}
+                </div>
+            </div>
+            <div class="card-content">
                 {{ name }}
-            </vs-card-body>
-        </vs-card>
+            </div>
+        </div>
     </router-link>
 </template>
 

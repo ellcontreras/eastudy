@@ -1,32 +1,29 @@
 <template>
-	<vs-topbar vs-color="primary">
-		<div style="justify-content: flex-start">
-			<h2>
-				<router-link to='/'>
-					<img id="logo" src="../assets/logo.png" alt="">
+	<nav class="navbar">
+		<div class="navbar-brand">
+			<router-link to='/'>
+				<img id="logo" src="../assets/logo.png" alt="">
+			</router-link>
+		</div>
+		<div class="navbar-menu">
+			<div class="navbar-end">
+				<router-link to="/questions" class="navbar-item">
+					Preguntas
 				</router-link>
-			</h2>
-		</div>
-		<div style="justify-content: flex-end;">
-			<router-link to="/questions">
-				<vs-button vs-color-text="rgb(255, 255, 255)" vs-color="rgba(255, 255, 255, 0.3)" vs-type="flat" >Preguntas</vs-button>
-			</router-link>
-			<vs-button vs-color-text="rgb(255, 255, 255)" vs-color="rgba(255, 255, 255, 0.3)" vs-type="flat" >Quiz</vs-button>
-			<router-link to='/login' v-if="!loged">
-				<vs-button vs-color-text="rgb(255, 255, 255)" vs-color="rgba(255, 255, 255, 0.3)" vs-type="flat" >
+				<router-link to='/login' v-if="!loged" class="navbar-item">
 					Iniciar Sesión
-				</vs-button>
-			</router-link>
-			<router-link :to="'/profile/'+loged.uid" v-if="loged">
-				<vs-button vs-color-text="rgb(255, 255, 255)" vs-color="rgba(255, 255, 255, 0.3)" vs-type="flat" >
+				</router-link>
+				<router-link :to="'/profile/'+loged.uid" v-if="loged" class="navbar-item">
 					Perfil
-				</vs-button>
-			</router-link>
-			<vs-button @click="handleLogout()" v-if="loged" vs-color-text="rgb(255, 255, 255)" vs-color="rgba(255, 255, 255, 0.3)" vs-type="flat" >
-				Cerrar Sesión
-			</vs-button>
+				</router-link>
+				<div class="navbar-item">
+					<button @click="handleLogout()" class="button is-warning">
+						Cerrar Sesión
+					</button>
+				</div>
+			</div>
 		</div>
-	</vs-topbar>
+	</nav>
 </template>
 
 <script>
@@ -64,6 +61,9 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+	nav {
+		background-color: #1d97c1;
+	}
 	a {
 		color: white;
 	}

@@ -1,8 +1,8 @@
 <template>
     <div>
-        <vs-button vs-color="danger" @click="handleLogin()">
+        <button class="button is-danger" @click="handleLogin()">
             Iniciar Sesión con Google
-        </vs-button>
+        </button>
     </div>
 </template>
 

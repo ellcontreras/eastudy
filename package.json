@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "animate.css": "^3.6.1",
+    "bulma": "^0.7.1",
     "firebase": "^5.2.0",
     "material-icons": "^0.2.3",
     "register-service-worker": "^1.0.0",
