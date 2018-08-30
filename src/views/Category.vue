@@ -6,15 +6,13 @@
         <div v-if="!questions.length">
             Aún no hay preguntas!
         </div>
-        <vs-list>
-            <router-link v-for="question of questions" :key="question.uid" 
-                :to="`\/question\/${question.uid}`">
-                <br>
-                <vs-list-item :vs-title="question.data.title"></vs-list-item>
-                <br>
-                <hr>
-            </router-link>
-        </vs-list>
+        <router-link v-for="question of questions" :key="question.uid" 
+            :to="`\/question\/${question.uid}`">
+            <br>
+            <div class="tr" :vs-title="question.data.title"></div>
+            <br>
+            <hr>
+        </router-link>
     </div>
 </template>
 
