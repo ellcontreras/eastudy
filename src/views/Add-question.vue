@@ -17,7 +17,7 @@
             <textarea v-model="content" class="textarea" placeholder="Habia un caballo bonito..."></textarea>
         </div>
         <hr>
-        <h2 class="subtitle is-2">Respuestas</h2>
+        <h2 class="subtitle is-2 has-text-centered">Respuestas</h2>
 
         <div class="container">
             <div v-for="answer in answers" :key="answer.id">
