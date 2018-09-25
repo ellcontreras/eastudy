@@ -1,41 +1,56 @@
 <template>
     <div>
-        <vs-card>
-            <vs-card-body>
-                <vs-row>
-                    <vs-col vs-w="3">
+        <div class="card">
+            <div class="card-content">
+                <div class="columns">
+                    <div class="is-one-third">
                         <img id="profile" :src="user.PhotoURL"/>
-                    </vs-col>
-                    <vs-col vs-w="9" class="content">
-                        <h1>{{ user.DisplayName }}</h1>
-                    </vs-col>
-                </vs-row>
-            </vs-card-body>
-        </vs-card>
-        <vs-tabs>
-            <vs-tab vs-label="Actividad">
-                <h2>Actividad</h2>
-                <div v-for="activity in activities" :key="activity.id">
-                    <Activity :title="activity.data.title"
-                        :content="activity.data.content"
-                        :date="activity.data.date"
-                        img="../assets/questionActivity.png"/>
-                        <br>
+                    </div>
+                    <div class="content">
+                        <h1 class="title is-1">{{ user.DisplayName }}</h1>
+                        <p><b>Email: </b> {{ user.Email }}</p>
+                    </div>
                 </div>
-            </vs-tab>
-            <vs-tab vs-label="Preguntas">
-                <h2>Preguntas</h2>
-                <vs-list>
-                    <router-link v-for="question of questions" :key="question.uid" 
-                        :to="`\/question\/${question.uid}`">
-                        <br>
-                        <vs-list-item :vs-title="question.data.title"></vs-list-item>
-                        <br>
-                        <hr>
-                    </router-link>
-                </vs-list>
-            </vs-tab>
-        </vs-tabs>
+            </div>
+        </div>
+
+
+        <div class="tabs">
+            <ul>
+                <li v-bind:class="{'is-active' : tabActive === 'activity'}" 
+                    @click="changeTab('activity')">
+                    <a>Actividad</a>
+                </li>
+                <li v-bind:class="{'is-active' : tabActive === 'questions'}" 
+                    @click="changeTab('questions')">
+                    <a>Preguntas</a>
+                </li>
+            </ul>
+        </div>
+
+        <div v-bind:class="{'hidden' : tabActive !== 'activity'}">
+            <h2 class="subtitle is-2">Actividad</h2>
+            <div v-for="activity in activities" :key="activity.id">
+                <Activity :title="activity.data.title"
+                    :content="activity.data.content"
+                    :date="activity.data.date"
+                    img="../assets/questionActivity.png"/>
+                    <br>
+            </div>
+        </div>
+
+        <div v-bind:class="{'hidden' : tabActive !== 'questions'}">
+            <h2 class="subtitle is-2">Preguntas</h2>
+            <div>
+                <router-link v-for="question of questions" :key="question.uid" 
+                    :to="`\/question\/${question.uid}`">
+                    <br>
+                    <p>{{ question.data.title }}</p>
+                    <br>
+                    <hr>
+                </router-link>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -50,6 +65,7 @@ export default {
     data () {
         return {
             uid: "",
+            tabActive: 'activity',
             user: [],
             info: [],
             activities: new Array(),
@@ -58,6 +74,24 @@ export default {
     },
     components: {
         Activity
+    },
+    methods: {
+        changeTab(e) {
+            if (this.tabActive === 'activity' && e === 'questions') {
+                this.tabActive = 'questions';
+
+                return;
+            }
+
+            if (this.tabActive === 'questions' && e === 'activity') {
+                this.tabActive = 'activity';
+
+                return;
+            }
+
+            console.log(e);
+
+        }
     },
     beforeMount () {
         this.uid = this.$route.params.uid;
@@ -77,7 +111,6 @@ export default {
 
                 if (!snap.val().title.includes("question") || !snap.val().title.includes("pregunta")) {
                     this.questions[this.questions.length - 1].data.img = "../assets/questionActivity.png";
-                    console.log(this.questions[0].data);
                 }
             });
         });
@@ -126,5 +159,12 @@ export default {
 
     .content {
         margin-top: 1vw;
+    }
+    .hidden {
+        display: none;
+    }
+
+    img {
+        margin-right: 1em !important;
     }
 </style>

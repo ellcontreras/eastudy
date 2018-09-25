@@ -8,6 +8,9 @@ import 'material-icons/iconfont/material-icons.css'
 import 'animate.css/animate.min.css'
 
 import firebase from 'firebase';
+import Toasted from 'vue-toasted';
+
+Vue.use(Toasted);
 
 firebase.initializeApp({
   apiKey: "AIzaSyD5YCXnqWky35U5KQv6y_YAqlza60RrpGo",

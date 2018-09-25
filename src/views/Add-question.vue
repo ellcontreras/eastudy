@@ -1,40 +1,36 @@
 <template>
     <div>
-        <h1 class="text-center">Añadir Pregunta</h1>
-        <vs-row>
-            <vs-col vs-w="6">
-                <label>Titulo</label>
-                <input type="text" v-model="title" placeholder="De que color es el caballo de napoleon?"/>
+        <h1 class="h1 title is-1 has-text-centered">Añadir Pregunta</h1>
+        <div class="container">
+            <label class="label">Titulo</label>
+            <input type="text" class="input" v-model="title" placeholder="De que color es el caballo de napoleon?"/>
+            <br><br>
+            <label class="label">Categoria</label>
+            <div class="select">
+                <select v-model="category">
+                    <option value="ciencias-naturales">Ciencias Naturales</option>
+                    <option value="matematicas">Matemáticas</option>
+                </select>
+            </div>
+            <br><br>
+            <label class="label">Contenido</label>
+            <textarea v-model="content" class="textarea" placeholder="Habia un caballo bonito..."></textarea>
+        </div>
+        <hr>
+        <h2 class="subtitle is-2 has-text-centered">Respuestas</h2>
+
+        <div class="container">
+            <div v-for="answer in answers" :key="answer.id">
+                <input type="text" class="input" v-model="answer.name" placeholder="El caballo se llama viernes"/>
+                <br>
+                <label class="checkbox">
+                    <input type="checkbox" @change="onChangeIsTrue(answer.id)" v-model="answer.isTrue"/>
+                    Es la respuesta correcta?
+                </label>
                 <br><br>
-                <label>Categoria</label>
-                <vs-select v-model="category">
-                    <vs-select-item vs-value="ciencias-naturales" vs-text="Ciencias Naturales"/>
-                    <vs-select-item vs-value="matematicas" vs-text="Matemáticas"/>
-                </vs-select>
-                <br><br>
-                <label>Contenido</label>
-                <textarea v-model="content" placeholder="Habia un caballo bonito..."></textarea>
-            </vs-col>
-        </vs-row>
-        <vs-divider>
-            <h2>Respuestas</h2>
-        </vs-divider>
-        <vs-row>
-            <vs-col vs-w="6">
-                <div v-for="answer in answers" :key="answer.id">
-                    <input type="text" v-model="answer.name" 
-                        placeholder="El caballo se llama viernes"/>
-                        <br>
-                    <vs-checkbox @change="onChangeIsTrue(answer.id)" v-model="answer.isTrue">Es la respuesta correcta?</vs-checkbox>
-                    <br><br>
-                </div>            
-            </vs-col>
-        </vs-row>
-        <vs-row>
-            <vs-col vs-w="6" class="text-left">
-                <vs-button @click="uploadQuestion()" vs-color="secondary">Subir</vs-button>
-            </vs-col>
-        </vs-row>
+            </div>            
+        </div>
+        <button @click="uploadQuestion()" class="button is-link">Subir</button>
     </div>
 </template>
 
