@@ -16,7 +16,7 @@
 				<router-link :to="'/profile/'+loged.uid" v-if="loged" class="navbar-item">
 					Perfil
 				</router-link>
-				<div class="navbar-item">
+				<div class="navbar-item" v-if="loged">
 					<button @click="handleLogout()" class="button is-warning">
 						Cerrar Sesión
 					</button>
