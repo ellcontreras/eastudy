@@ -13,6 +13,9 @@
 				<router-link to='/login' v-if="!loged" class="navbar-item">
 					Iniciar Sesión
 				</router-link>
+				<router-link to="/add-question" v-if="loged" class="navbar-item">
+					Agregar pregunta
+				</router-link>
 				<router-link :to="'/profile/'+loged.uid" v-if="loged" class="navbar-item">
 					Perfil
 				</router-link>

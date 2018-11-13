@@ -2,15 +2,19 @@
     <div>
         <modal-question v-if="displayQuestion" :question="questionModal"/>
         <h1 class="title is-1 has-text-centered">Preguntas recientes</h1>
-        <div class="menu">
-            <ul class="menu-list">
-                <li v-for="question of questions" :key="question.uid"
-                    @click="setModalQuestion(question)">
-                    <a>
-                        <p>{{ question.data.title }}</p>
-                    </a>
-                </li>
-            </ul>
+
+        <div class="columns" v-for="question in questions" :key="question._id">
+            <div v-for="q in question" :key="q.uid" class="column">
+                <div class="card">
+                    <span class="tag" 
+                        :class="q.data.category == 'ciencias-naturales' ? 'is-primary' : 'is-danger'">
+                        {{ q.data.category }}
+                    </span>
+                    <div class="card-content" @click="setModalQuestion(q)">
+                        {{ q.data.title }}
+                    </div>
+                </div>
+            </div>
         </div>
     </div>    
 </template>
@@ -45,12 +49,19 @@ export default {
 
             this.questions.reverse();
 
+            let arrays = [], size = 3;
+
+            while (this.questions.length > 0)
+                arrays.push(this.questions.splice(0, size));
+
+            this.questions = arrays;
+
         }, error => {
-            this.$vs.notify({
-                title: 'Error',
-                message: error.message,
-                color: 'danger'
-            });
+            this.$toasted.show(`Error ${error.message}!`, {
+                theme: "bubble", 
+                position: "bottom-right", 
+                duration : 5000
+            })
         });
     },
     methods: {
@@ -65,5 +76,8 @@ export default {
 <style scoped>
     a {
         color: #5b5777 !important;
+    }
+    .card {
+        cursor: pointer;
     }
 </style>

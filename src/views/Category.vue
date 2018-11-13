@@ -2,15 +2,26 @@
     <div>
         <modal-question v-if="displayQuestion" :question="questionModal"/>
 
-        <h1 class="title is-1 has-text-centered">{{ category }}</h1>
+        <div class="hero is-medium" 
+            :class="slug == 'ciencias-naturales' ? 'is-primary' : 'is-danger'">
+            <div class="hero-body">
+                <h1 class="title is-1 has-text-centered">{{ category }}</h1>
+            </div>
+        </div>
+
         <br>
         <h2 class="subtitle is-2">Preguntas de esta categoria</h2>
         <div v-if="!questions.length">
             Aún no hay preguntas!
         </div>
-        <div class="card" @click="setModalQuestion(question)" v-for="question of questions" :key="question.uid">
-            <div class="card-content">
-                {{ question.data.title }}
+
+        <div class="columns" v-for="question in questions" :key="question._id">
+            <div v-for="q in question" :key="q.uid" class="column">
+                <div class="card"> 
+                    <div class="card-content" @click="setModalQuestion(q)">
+                        {{ q.data.title }}
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -49,6 +60,13 @@ export default {
                     data: snap.val()
                 });
             });
+
+            let arrays = [], size = 3;
+
+            while (this.questions.length > 0)
+                arrays.push(this.questions.splice(0, size));
+
+            this.questions = arrays;
         });
     },
     created() {

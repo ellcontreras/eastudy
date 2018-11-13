@@ -69,19 +69,18 @@ export default {
                     answers: this.answers,
                     category: this.category
                 }).then(res => {
-                    this.$vs.notify({
-                        title: 'Exito!',
-                        text: 'La pregunta se ha agregado correctamente',
-                        color: 'success'
+                    this.$toasted.show('Se ha agregado la pregunta exitosamente!', {
+                        theme: "bubble", 
+                        position: "bottom-right", 
+                        duration : 5000
                     })
 
-                    this.$router.push(`/question/${dbRef.key}`)
+                    this.$router.push(`/questions`)
                 }).catch(error => {
-                    console.log(error)
-                    this.$vs.notify({
-                        title: 'Error message',
-                        text: error.message,
-                        color: 'danger'
+                    this.$toasted.show('Ocurrió un error al guardar la pregunta, intenta después!', {
+                        theme: "bubble", 
+                        position: "bottom-right", 
+                        duration : 5000
                     })
                 })
 
@@ -96,10 +95,10 @@ export default {
                     console.log(error);
                 });
             } else {
-                this.$vs.notify({
-                    title: 'Alerta',
-                    text: 'No debes de dejar las respuestas, el titulo ni la categoria en blanco',
-                    color: 'warning'
+                this.$toasted.show('Debes de llenar todos los campos!', {
+                    theme: "bubble", 
+                    position: "bottom-right", 
+                    duration : 5000
                 })
             }
         },
@@ -124,4 +123,3 @@ export default {
         justify-content: flex-start;
     }
 </style>
-

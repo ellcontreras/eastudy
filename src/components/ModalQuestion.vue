@@ -2,8 +2,9 @@
     <div class="modal" :class="{'is-active': active}">
         <div class="modal-background"></div>
         <div class="modal-content">
-            <div class="card">
-                <div class="card-content">
+            <div class="hero" 
+                :class="question.data.category == 'ciencias-naturales' ? 'is-primary' : 'is-danger'">
+                <div class="hero-body">
                     <h1 class="title is-1 has-text-centered">
                         {{ question.data.title }}
                     </h1>

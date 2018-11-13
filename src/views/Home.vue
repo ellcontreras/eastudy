@@ -13,10 +13,10 @@
     <h2 class="subtitle is-2 has-text-centered">Categorias de estudio</h2>
     <div class="columns">
       <div class="column">
-        <CategoryCard name="Ciencias Naturales" color="green" />
+        <CategoryCard name="Ciencias Naturales" color="primary" />
       </div>
       <div class="column">
-        <CategoryCard name="Matemáticas" color="yellow" />
+        <CategoryCard name="Matemáticas" color="danger" />
       </div>
     </div>
   </div>
@@ -40,4 +40,3 @@ export default {
   margin-bottom: 1em;
 }
 </style>
-
