@@ -1,5 +1,6 @@
 <template>
     <div>
+        <modal-question v-if="displayQuestion" :question="questionModal"/>
         <div class="card">
             <div class="card-content">
                 <div class="columns">
@@ -42,13 +43,11 @@
         <div v-bind:class="{'hidden' : tabActive !== 'questions'}">
             <h2 class="subtitle is-2">Preguntas</h2>
             <div>
-                <router-link v-for="question of questions" :key="question.uid" 
-                    :to="`\/question\/${question.uid}`">
-                    <br>
-                    <p>{{ question.data.title }}</p>
-                    <br>
-                    <hr>
-                </router-link>
+                <div class="card" v-for="question of questions" :key="question.uid" @click="setModalQuestion(question)">
+                    <div class="card-content">
+                        {{ question.data.title }}
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -57,11 +56,16 @@
 <script>
 import firebase from 'firebase'
 import axios from 'axios'
-import Activity from '@/components/Activity'
-import url from '../utils/utils.js';
+import ModalQuestion from '@/components/ModalQuestion.vue'
+import Activity from '@/components/Activity.vue'
+import url from '../utils/utils.js'
 
 export default {
     name: 'Profile',
+    components: {
+        Activity,
+        ModalQuestion  
+    },
     data () {
         return {
             uid: "",
@@ -70,10 +74,14 @@ export default {
             info: [],
             activities: new Array(),
             questions: new Array(),
+            displayQuestion: true,
+            questionModal: []
         }
     },
-    components: {
-        Activity
+    created() {
+        this.$on('closeModal', () => {
+            this.displayQuestion = false;
+        });
     },
     methods: {
         changeTab(e) {
@@ -88,9 +96,10 @@ export default {
 
                 return;
             }
-
-            console.log(e);
-
+        },
+        setModalQuestion(question) {
+            this.displayQuestion = true;
+            this.questionModal = question;
         }
     },
     beforeMount () {
@@ -166,5 +175,9 @@ export default {
 
     img {
         margin-right: 1em !important;
+    }
+
+    .card {
+        cursor: pointer;
     }
 </style>
