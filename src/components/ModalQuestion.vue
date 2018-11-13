@@ -30,6 +30,7 @@
 </template>
 
 <script>
+
 export default {
     name: 'ModalQuestion',
     props: {
@@ -55,9 +56,17 @@ export default {
                 .filter(answer => answer.isTrue)[0];
 
             if (this.userAnswer == correctAnswer.name) {
-                alert("correcto");
+                this.$toasted.show('correcto!', {
+                    theme: "bubble", 
+                    position: "bottom-right", 
+                    duration : 5000
+                })
             } else {
-                alert("incorrecto");
+                this.$toasted.show('incorrecto!', {
+                    theme: "primary", 
+                    position: "bottom-right", 
+                    duration : 5000
+                })
             }
 
             this.changeActive();
