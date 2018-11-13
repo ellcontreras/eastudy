@@ -34,9 +34,3 @@ export default {
   }
 }
 </script>
-
-<style>
-.vs-row {
-  margin-bottom: 1em;
-}
-</style>
