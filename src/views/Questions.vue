@@ -1,27 +1,38 @@
 <template>
     <div>
-        <h1 class="text-center">Preguntas recientes</h1>
-        <vs-list>
-            <router-link v-for="question of questions" :key="question.uid" 
-                :to="`\/question\/${question.uid}`">
-                <br>
-                <vs-list-item :vs-title="question.data.title"></vs-list-item>
-                <br>
-                <hr>
-            </router-link>
-        </vs-list>
+        <modal-question v-if="displayQuestion" :question="questionModal"/>
+        <h1 class="title is-1 has-text-centered">Preguntas recientes</h1>
+        <div class="menu">
+            <ul class="menu-list">
+                <li v-for="question of questions" :key="question.uid"
+                    @click="setModalQuestion(question)">
+                    <a>
+                        <p>{{ question.data.title }}</p>
+                    </a>
+                </li>
+            </ul>
+        </div>
     </div>    
 </template>
 
 <script>
 import firebase from 'firebase';
+import ModalQuestion from '@/components/ModalQuestion.vue'
 
 export default {
     name: 'Questions',
+    components: {ModalQuestion},
     data() {
         return {
-            questions: []
+            questions: [],
+            displayQuestion: false,
+            questionModal: []
         }
+    },
+    created() {
+        this.$on('closeModal', () => {
+            this.displayQuestion = false;
+        });
     },
     beforeMount() {
         firebase.database().ref('/questions').on('value', res => {
@@ -41,6 +52,12 @@ export default {
                 color: 'danger'
             });
         });
+    },
+    methods: {
+        setModalQuestion(question) {
+            this.displayQuestion = true;
+            this.questionModal = question;
+        }
     }
 }
 </script>
@@ -50,4 +67,3 @@ export default {
         color: #5b5777 !important;
     }
 </style>
-
