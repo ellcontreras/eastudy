@@ -49,11 +49,11 @@ export default {
   methods: {
 	  handleLogout() {
 		  firebase.auth().signOut().then(res => {
-			  this.$vs.notify({
-				  title: "Vuelve pronto",
-				  text: "Esperamos que vuelvas pronto!",
-				  color: "success"
-			  })
+			this.$toasted.show('Adiooooos!', {
+				theme: "bubble", 
+				position: "bottom-right", 
+				duration : 5000
+			})
 		  })
 
 		  this.$forceUpdate()

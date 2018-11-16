@@ -17,23 +17,22 @@ export default {
 
             firebase.auth().signInWithPopup(provider).then(res => {
                 console.log(res.user);
-                this.$vs.notify({
-                    title: `Bienvenido ${res.user.displayName}!`,
-                    text: 'Es un gusto tenerte aqusi de nuevo :3',
-                    color: 'success'
+                this.$toasted.show(`Bienvenido ${res.user.displayName}!`, {
+                    theme: "bubble", 
+                    position: "bottom-right", 
+                    duration : 5000
                 })
 
                 this.$router.push('/')
                 this.$emit('changeLogin')
             }).catch(error => {
-                this.$vs.notify({
-                    title: 'Error',
-                    text: error.message,
-                    color: 'danger'
+                this.$toasted.show(`Error ${error.message}!`, {
+                    theme: "bubble", 
+                    position: "bottom-right", 
+                    duration : 5000
                 })
             });
         }
     }
 }
 </script>
-

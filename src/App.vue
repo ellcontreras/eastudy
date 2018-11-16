@@ -9,11 +9,17 @@
 
 <script>
 import Navbar from '@/components/Navbar.vue'
+import firebase from 'firebase';
 
 export default {
   name: 'App',
   components: {
     Navbar
+  },
+  created() {
+    firebase.auth().onAuthStateChanged(u => {
+      this.$router.push('/');
+    });
   }
 }
 </script>

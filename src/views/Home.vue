@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1 class="title is-1 has-text-centered">Quizes de la semana</h1>
+    <h1 class="title is-1 has-text-centered">Quizes de la semana(proximamente)</h1>
     <div class="columns">
       <div class="column">
         <QuizCard name="Quimica" img="http://1.bp.blogspot.com/-VWiC0EBxi2o/UiKDeM-jaxI/AAAAAAAAND8/4AlixpFPVzw/s1600/fumigacion_en_avion.jpg" />

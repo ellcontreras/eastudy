@@ -5,11 +5,11 @@
             <div class="card-content">
                 <div class="columns">
                     <div class="is-one-third">
-                        <img id="profile" :src="user.PhotoURL"/>
+                        <img id="profile" :src="user.photoURL"/>
                     </div>
                     <div class="content">
-                        <h1 class="title is-1">{{ user.DisplayName }}</h1>
-                        <p><b>Email: </b> {{ user.Email }}</p>
+                        <h1 class="title is-1">{{ user.displayName }}</h1>
+                        <p><b>Email: </b> {{ user.email }}</p>
                     </div>
                 </div>
             </div>
@@ -105,12 +105,14 @@ export default {
     beforeMount () {
         this.uid = this.$route.params.uid;
 
-        axios.get(`${url.url}api/user/get/${this.uid}`).then(res => {
-            this.user = res.data.user;
-        }).catch(error => {
-            console.log(error);
-        });
+        // axios.get(`${url.url}api/user/get/${this.uid}`).then(res => {
+        //     this.user = res.data.user;
+        // }).catch(error => {
+        //     console.log(error);
+        // });
 
+        this.user = firebase.auth().currentUser;
+    
         firebase.database().ref('/questions').orderByChild('userUID').equalTo(this.uid).on('value', res => {
             res.forEach(snap => {
                 this.questions.push({
