@@ -54,11 +54,6 @@ export default new Router({
       name: '404 Page not found',
       component: PageNotFound
     },
-    {
-      path: '*',
-      name: '404 Page not found',
-      component: PageNotFound
-    }
   ],
   linkActiveClass: 'is-active'
 })
