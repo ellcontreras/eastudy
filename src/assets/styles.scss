@@ -2,6 +2,19 @@
 
 $primary: #1d97c1;
 
+.fade-enter-active, .fade-leave-active {
+    transition-property: opacity;
+    transition-duration: .5s;
+}
+
+.fade-enter-active {
+    transition-delay: .5s;
+}
+
+.fade-enter, .fade-leave-active {
+    opacity: 0
+}
+
 @import "../../node_modules/bulma/sass/utilities/_all.sass";
 @import "../../node_modules/bulma/sass/base/_all.sass";
 @import "../../node_modules/bulma/sass/elements/_all.sass";
