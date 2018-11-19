@@ -1,10 +1,14 @@
 <template>
   <div id="app">
     <Navbar />
-    <div class="container is-fluid" id="main-container" v-if="$route.name !== 'home'">
-        <router-view/>
+    <div class="container" id="main-container" v-if="$route.name !== 'home'">
+        <transition name="fade">
+          <router-view/>
+        </transition>
     </div>
-    <router-view v-else />
+    <transition name="fade" v-else>
+      <router-view/>
+    </transition>
   </div>
 </template>
 

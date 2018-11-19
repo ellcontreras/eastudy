@@ -1,5 +1,35 @@
 <template>
-	<nav class="navbar">
+	<div class="hero is-primary is-medium" v-if="$route.name == 'home'">
+		<div class="hero-head">
+			<nav class="navbar">
+				<div class="navbar-menu">
+					<div class="navbar-end">
+						<router-link to="/questions" class="navbar-item">
+							Preguntas
+						</router-link>
+						<router-link to='/login' v-if="!loged" class="navbar-item">
+							Iniciar Sesión
+						</router-link>
+						<router-link to="/add-question" v-if="loged" class="navbar-item">
+							Agregar pregunta
+						</router-link>
+						<router-link :to="'/profile/'+loged.uid" v-if="loged" class="navbar-item">
+							Perfil
+						</router-link>
+						<div class="navbar-item" v-if="loged">
+							<button @click="handleLogout()" class="button is-warning">
+								Cerrar Sesión
+							</button>
+						</div>
+					</div>
+				</div>
+			</nav>
+		</div>
+		<div class="hero-body has-text-centered">
+			<img id="logoHome" src="../assets/logo.png" alt="">
+		</div>
+	</div>
+	<nav class="navbar is-primary" v-else>
 		<div class="navbar-brand">
 			<router-link to='/'>
 				<img id="logo" src="../assets/logo.png" alt="">
@@ -64,9 +94,6 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-	nav {
-		background-color: #1d97c1;
-	}
 	a {
 		color: white;
 	}
