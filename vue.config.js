@@ -1,6 +1,6 @@
 module.exports = {
   pwa: {
     name: 'Eastudy',
-    themeColor: '#6E33A5'
+    themeColor: '#1d97c1'
   }
 }
