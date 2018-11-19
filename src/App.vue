@@ -1,9 +1,10 @@
 <template>
   <div id="app">
     <Navbar />
-    <div class="container" id="main-container" vs-type="flex" vs-justify="center" vs-align="center">
-        <router-view/>      
+    <div class="container is-fluid" id="main-container" v-if="$route.name !== 'home'">
+        <router-view/>
     </div>
+    <router-view v-else />
   </div>
 </template>
 
