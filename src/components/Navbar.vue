@@ -1,5 +1,5 @@
 <template>
-	<div class="hero is-primary is-medium" v-if="$route.name == 'home'">
+	<div class="hero is-primary" v-if="$route.name == 'home'">
 		<div class="hero-head">
 			<nav class="navbar">
 				<div class="navbar-menu">
