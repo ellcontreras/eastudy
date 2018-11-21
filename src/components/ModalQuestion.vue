@@ -1,5 +1,5 @@
 <template>
-    <div class="modal" :class="{'is-active': active}">
+    <div class="modal" :class="{'is-active': active}" v-show="show">
         <div class="modal-background"></div>
         <div class="modal-content">
             <div class="hero" 
@@ -31,6 +31,7 @@
 </template>
 
 <script>
+import firebase from 'firebase'
 
 export default {
     name: 'ModalQuestion',
@@ -40,7 +41,19 @@ export default {
     data() {
         return {
             active: true,
-            userAnswer: ''
+            userAnswer: '',
+            show: false
+        }
+    },
+    beforeMount() {
+        if (!firebase.auth().currentUser) {
+            this.$toasted.show('Necesitas iniciar sesión primero!', {
+                theme: "bubble", 
+                position: "bottom-right", 
+                duration : 5000
+            })
+        } else {
+            this.show = true;
         }
     },
     mounted() {
