@@ -7,6 +7,9 @@
 						<router-link to="/questions" class="navbar-item">
 							Preguntas
 						</router-link>
+						<router-link to="/dashboard" class="navbar-item">
+							Dashboard
+						</router-link>
 						<router-link to='/login' v-if="!loged" class="navbar-item">
 							Iniciar Sesión
 						</router-link>
