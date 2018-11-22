@@ -8,6 +8,7 @@ import PageNotFound from './views/PageNotFound.vue'
 import Login from './views/Login.vue'
 import Profile from './views/Profile.vue'
 import Category from './views/Category.vue'
+import Dashboard from './views/Dashboard.vue'
 
 Vue.use(Router)
 
@@ -48,6 +49,11 @@ export default new Router({
       path: '/category/:name',
       name: 'category view',
       component: Category
+    },
+    {
+      path: '/dashboard',
+      name: 'dashboard',
+      component: Dashboard
     },
     {
       path: '/404',
