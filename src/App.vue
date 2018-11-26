@@ -21,10 +21,28 @@ export default {
   components: {
     Navbar
   },
+  beforeUpdate() {
+    this.$store.dispatch('SET_INIT_QUESTIONS')
+  },
   created() {
     firebase.auth().onAuthStateChanged(u => {
       this.$router.push('/');
     });
+
+    firebase.database().ref('/questions').on('child_added', res => {
+      let questions = [];
+
+      res.forEach(snap => {
+          questions.push({
+              uid: snap.key,
+              data: snap.val()
+          });
+      });
+
+      questions.reverse();
+
+      this.$store.commit('updateQuestions', questions);
+    })
   }
 }
 </script>
