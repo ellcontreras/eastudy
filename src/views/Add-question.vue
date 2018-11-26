@@ -89,8 +89,6 @@ export default {
                     date: new Date(),
                     title: "Creación de pregunta",
                     uid: firebase.auth().currentUser.uid
-                }).then(res => {
-                    console.log(res);
                 }).catch(error => {
                     console.log(error);
                 });
