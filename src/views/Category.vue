@@ -53,21 +53,14 @@ export default {
                 break;
         }
 
-        firebase.database().ref('/questions').orderByChild("category").equalTo(this.slug).on('value', res => {
-            res.forEach(snap => {
-                this.questions.push({
-                    uid: snap.key,
-                    data: snap.val()
-                });
-            });
+        let questions = this.$store.getters.questionByCategory(this.slug)
 
-            let arrays = [], size = 3;
+        let arrays = [], size = 3;
 
-            while (this.questions.length > 0)
-                arrays.push(this.questions.splice(0, size));
+        while (questions.length > 0)
+            arrays.push(questions.splice(0, size));
 
-            this.questions = arrays;
-        });
+        this.questions = arrays;
     },
     created() {
         this.$on('closeModal', () => {
