@@ -1,22 +1,22 @@
 <template>
     <section class="info-tiles">
         <div class="tile is-ancestor has-text-centered">
-            <div class="tile is-parent">
+            <!-- <div class="tile is-parent">
                 <article class="tile is-child box">
                     <p class="title">439k</p>
                     <p class="subtitle">Usuarios</p>
                 </article>
-            </div>
+            </div> -->
             <div class="tile is-parent">
                 <article class="tile is-child box">
-                    <p class="title">59k</p>
+                    <p class="title">{{ totalQuestions }}</p>
                     <p class="subtitle">Preguntas</p>
                 </article>
             </div>
             <div class="tile is-parent">
                 <article class="tile is-child box">
                     <p class="title">3.4k</p>
-                    <p class="subtitle">Respondidas</p>
+                    <p class="subtitle">Quizes</p>
                 </article>
             </div>
             <!-- <div class="tile is-parent">
@@ -31,6 +31,14 @@
 
 <script>
 export default {
-    name: 'MetricsDashboard'
+    name: 'MetricsDashboard',
+    data() {
+        return {
+            totalQuestions: 0
+        }
+    },
+    beforeMount() {
+        this.totalQuestions = this.$store.state.questions.length
+    }
 }
 </script>
