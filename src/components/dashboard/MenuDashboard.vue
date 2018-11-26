@@ -4,13 +4,13 @@
             General
         </p>
         <ul class="menu-list">
-            <li><a class="is-active">Dashboard</a></li>
+            <li><router-link to="/">Dashboard</router-link></li>
         </ul>
         <p class="menu-label">
             Preguntas
         </p>
         <ul class="menu-list">
-            <li><a>Ver preguntas</a></li>
+            <li><router-link to="/dashboard/view-questions">Ver preguntas</router-link></li>
             <li><a>Verificar preguntas</a></li>
         </ul>
         <p class="menu-label">
