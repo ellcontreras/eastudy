@@ -1,9 +1,10 @@
 <template>
-    <div class="card has-text-centered">
-        <div class="card-content">
-            <h1 class="title is-1">Inicia Sesión</h1>
-            <br>
-            <Login></Login>
+    <div class="hero is-large">
+        <div class="hero-body">
+            <div class="container has-text-centered">
+                <h2 class="title is-2">Iniciar Sesión</h2>
+                <Login />
+            </div>
         </div>
     </div>
 </template>
