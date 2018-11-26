@@ -9,6 +9,7 @@ import Login from './views/Login.vue'
 import Profile from './views/Profile.vue'
 import Category from './views/Category.vue'
 import Dashboard from './views/Dashboard.vue'
+import ViewQuestions from '@/components/dashboard/ViewQuestions.vue'
 
 Vue.use(Router)
 
@@ -53,7 +54,12 @@ export default new Router({
     {
       path: '/dashboard',
       name: 'dashboard',
-      component: Dashboard
+      component: Dashboard,
+    },
+    {
+      path: '/dashboard/view-questions',
+      name: 'Dashboard view questions',
+      component: ViewQuestions
     },
     {
       path: '/404',
