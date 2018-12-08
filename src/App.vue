@@ -9,16 +9,19 @@
     <transition name="fade" v-else>
       <router-view/>
     </transition>
+    <page-footer />
   </div>
 </template>
 
 <script>
 import Navbar from '@/components/Navbar.vue'
+import PageFooter from '@/components/PageFooter.vue'
 
 export default {
   name: 'App',
   components: {
-    Navbar
+    Navbar,
+    PageFooter
   },
   data() {
     return {
