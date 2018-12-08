@@ -4,7 +4,7 @@
             General
         </p>
         <ul class="menu-list">
-            <li><router-link to="/">Dashboard</router-link></li>
+            <li><router-link to="/dashboard">Dashboard</router-link></li>
         </ul>
         <p class="menu-label">
             Preguntas
