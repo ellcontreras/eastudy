@@ -12,7 +12,7 @@
                                 Hola, Admin.
                             </h1>
                             <h2 class="subtitle">
-                                Espero que estés teniendo un buen día!
+                                Espero que estés teniendo {{ saludo }}!
                             </h2>
                         </div>
                     </div>
@@ -39,6 +39,20 @@ import SearchDashboard from '@/components/dashboard/SearchDashboard.vue'
 
 export default {
     name: 'Dashboard',
-    components: { EventsDashboard, MenuDashboard, MetricsDashboard, SearchDashboard }
+    components: { EventsDashboard, MenuDashboard, MetricsDashboard, SearchDashboard },
+    data() {
+        return {
+            saludo: ''
+        }
+    },
+    beforeMount() {
+        let date = new Date()
+
+        if ((date.getHours() > 18 && date.getHours() < 23) || date.getHours() < 4) {
+            this.saludo = 'una buena noche'
+        } else {
+            this.saludo = 'un buen dia'
+        }
+    }
 }
 </script>
