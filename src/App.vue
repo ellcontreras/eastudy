@@ -14,22 +14,44 @@
 
 <script>
 import Navbar from '@/components/Navbar.vue'
-import firebase from 'firebase';
 
 export default {
   name: 'App',
   components: {
     Navbar
   },
+  data() {
+    return {
+      u: []
+    }
+  },
   beforeUpdate() {
     this.$store.dispatch('SET_INIT_QUESTIONS')
+
+    if (this.$firebase.auth().currentUser) {
+      let em = this.u.email.split('@')[0]
+      this.$firebase.database().ref(`/admins/emails/${em}`).on('value', r => {
+        if (r.val() == this.u.email) {
+          this.$store.dispatch('SET_INIT_QUESTIONS_ADMIN')
+        }
+      })
+    }
   },
   created() {
-    firebase.auth().onAuthStateChanged(u => {
+    this.$firebase.auth().onAuthStateChanged(u => {
       this.$router.push('/');
+
+      this.u = u
+
+      let em = this.u.email.split('@')[0]
+      this.$firebase.database().ref(`/admins/emails/${em}`).on('value', r => {
+        if (r.val() == this.u.email) {
+          this.$store.dispatch('SET_INIT_QUESTIONS_ADMIN')
+        }
+      })
     });
 
-    firebase.database().ref('/questions').on('child_added', res => {
+    this.$firebase.database().ref('/questions').on('child_added', res => {
       let questions = [];
 
       res.forEach(snap => {

@@ -17,7 +17,8 @@ Vue.prototype.$firebase = firebase;
 
 export default new Vuex.Store({
   state: {
-    questions: []
+    questions: [],
+    adminQuestions: []
   },
   getters: {
     questionByCategory(state) {
@@ -30,6 +31,9 @@ export default new Vuex.Store({
     updateQuestions(state, questions) {
       state.questions = questions;
     },
+    updateQuestionsAdmin(state, questions) {
+      state.adminQuestions = questions;
+    },
     deleteQuestion(state, question) {
       firebase.database().ref(`/questions/${question.uid}`).remove(res => {
         return res
@@ -38,6 +42,23 @@ export default new Vuex.Store({
   },
   actions: {
     SET_INIT_QUESTIONS({ commit }) {
+      firebase.database().ref('/questions').orderByChild('isActive')
+        .equalTo(true).on('value', res => {
+          var q = [];
+
+          res.forEach(snap => {
+              q.push({
+                  uid: snap.key,
+                  data: snap.val()
+              });
+          });
+
+          q.reverse();
+
+          commit('updateQuestions', q)
+      })
+    },
+    SET_INIT_QUESTIONS_ADMIN({ commit }) {
       firebase.database().ref('/questions').on('value', res => {
         var q = [];
 
@@ -50,7 +71,7 @@ export default new Vuex.Store({
 
         q.reverse();
 
-        commit('updateQuestions', q)
+        commit('updateQuestionsAdmin', q)
       })
     }
   }

@@ -15,7 +15,7 @@
                 <hr>
 
                 <ul class="menu-list">
-                    <li v-for="question of $store.state.questions" :key="question.uid">
+                    <li v-for="question of $store.state.adminQuestions" :key="question.uid">
                         <a>
                             {{ question.data.title }} <br>
                             <button class="button is-danger" @click="$store.commit('deleteQuestion', question)">Borrar</button>
