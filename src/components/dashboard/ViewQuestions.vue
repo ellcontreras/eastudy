@@ -1,5 +1,6 @@
 <template>
     <div>
+        <modal-edit-question v-if="isActiveEditQuestion" :question="questionEdit"></modal-edit-question>
         <div class="columns">
             <div class="column is-3 ">
                 <menu-dashboard></menu-dashboard>
@@ -14,7 +15,13 @@
                 <hr>
 
                 <ul class="menu-list">
-                    <li v-for="(q, k) of questions" :key="k"><a>{{ q }}</a></li>
+                    <li v-for="question of $store.state.questions" :key="question.uid">
+                        <a>
+                            {{ question.data.title }} <br>
+                            <button class="button is-danger" @click="$store.commit('deleteQuestion', question)">Borrar</button>
+                            <button class="button is-warning" @click="displayQuestion(question)">Modificar</button>
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -23,13 +30,28 @@
 
 <script>
 import MenuDashboard from './MenuDashboard.vue'
+import ModalEditQuestion from '../modals/ModalEditQuestion.vue'
 
 export default {
     name: 'ViewQuestions',
-    components: { MenuDashboard},
+    components: { MenuDashboard, ModalEditQuestion },
     data() {
         return {
-            questions: ['123123', '12341234', '12341234', '12341234']
+            questions: ['123123', '12341234', '12341234', '12341234'],
+            isActiveEditQuestion: false,
+            questionEdit: []
+        }
+    },
+    created() {
+        this.$on('closeModal', () => {
+            this.isActiveEditQuestion = false;
+        });
+    },
+    methods: {
+        displayQuestion(q) {
+            this.isActiveEditQuestion = !this.isActiveEditQuestion
+
+            this.questionEdit = q
         }
     }
 }
