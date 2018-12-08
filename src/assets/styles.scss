@@ -2,6 +2,10 @@
 
 $primary: #1d97c1;
 
+body {
+    background-color: whitesmoke !important;
+}
+
 .fade-enter-active, .fade-leave-active {
     transition-property: opacity;
     transition-duration: .5s;
