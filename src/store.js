@@ -29,6 +29,11 @@ export default new Vuex.Store({
   mutations: {
     updateQuestions(state, questions) {
       state.questions = questions;
+    },
+    deleteQuestion(state, question) {
+      firebase.database().ref(`/questions/${question.uid}`).remove(res => {
+        return res
+      })
     }
   },
   actions: {
