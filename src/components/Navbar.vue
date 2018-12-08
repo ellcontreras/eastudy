@@ -66,23 +66,21 @@
 </template>
 
 <script>
-import firebase from 'firebase'
-
 export default {
   name: 'Navbar',
   data() {
 	  return {
-		  loged: firebase.auth().currentUser,
+		  loged: this.$firebase.auth().currentUser,
 		  isAdmin: false
 	  }
   },
   beforeMount() {
-	firebase.auth().onAuthStateChanged(user => {
-		this.loged = firebase.auth().currentUser
+	this.$firebase.auth().onAuthStateChanged(user => {
+		this.loged = this.$firebase.auth().currentUser
 
 		let em = this.loged.email.split('@')[0]
 
-		firebase.database().ref(`/admins/emails/${em}`).on('value', r => {
+		this.$firebase.database().ref(`/admins/emails/${em}`).on('value', r => {
 			this.isAdmin = r.val() == this.loged.email
 		})
 	}, error => {
@@ -91,7 +89,7 @@ export default {
   },
   methods: {
 	  handleLogout() {
-		  firebase.auth().signOut().then(res => {
+		  this.$firebase.auth().signOut().then(res => {
 			this.$toasted.show('Adiooooos!', {
 				theme: "bubble", 
 				position: "bottom-right", 
