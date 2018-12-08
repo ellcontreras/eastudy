@@ -39,30 +39,14 @@ export default {
         });
     },
     beforeMount() {
-        firebase.database().ref('/questions').on('value', res => {
-            res.forEach(snap => {
-                this.questions.push({
-                    uid: snap.key,
-                    data: snap.val()
-                });
-            });
+        let questions = this.$store.state.questions;
 
-            this.questions.reverse();
+        let arrays = [], size = 3;
 
-            let arrays = [], size = 3;
+        while (questions.length > 0)
+            arrays.push(questions.splice(0, size))
 
-            while (this.questions.length > 0)
-                arrays.push(this.questions.splice(0, size));
-
-            this.questions = arrays;
-
-        }, error => {
-            this.$toasted.show(`Error ${error.message}!`, {
-                theme: "bubble", 
-                position: "bottom-right", 
-                duration : 5000
-            })
-        });
+        this.questions = arrays;
     },
     methods: {
         setModalQuestion(question) {

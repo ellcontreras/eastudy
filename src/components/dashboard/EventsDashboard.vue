@@ -14,10 +14,10 @@
             <div class="content">
                 <table class="table is-fullwidth is-striped">
                     <tbody>
-                        <tr>
+                        <tr v-for="(event, k) of events" :key="k">
                             <td width="5%"><i class="fa fa-bell-o"></i></td>
-                            <td>Lorum ipsum dolem aire</td>
-                            <td><a class="button is-small is-primary" href="#">Action</a></td>
+                            <td>{{ event.name }}</td>
+                            <td><router-link class="button is-small is-primary" to="/">Action</router-link></td>
                         </tr>
                     </tbody>
                 </table>
@@ -31,6 +31,21 @@
 
 <script>
 export default {
-    name: 'EventsDashboard'
+    name: 'EventsDashboard',
+    data() {
+        return {
+            events: [
+                {
+                    name: 'lorem'
+                },
+                {
+                    name: 'asdcasdc'
+                },
+                {
+                    name: 'asdcasd'
+                }
+            ]
+        }
+    }
 }
 </script>

@@ -75,6 +75,22 @@ export default {
                     position: "bottom-right", 
                     duration : 5000
                 })
+
+                let uid = this.$firebase.auth().currentUser.uid
+                const dbRef = this.$firebase.database().ref(`/users/${uid}`)
+
+                var updates = {}
+                dbRef.on('value', r => {
+                    console.log("val", r.val())
+
+                    let acExp = r.val().experience
+
+                    updates['experience'] = acExp + this.question.experience
+                
+                    this.$firebase.database().ref().update(updates)
+                })
+
+                this.$firebase.database().update(updates)
             } else {
                 this.$toasted.show('incorrecto!', {
                     theme: "primary", 

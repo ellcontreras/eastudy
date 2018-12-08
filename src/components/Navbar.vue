@@ -7,9 +7,6 @@
 						<router-link to="/questions" class="navbar-item">
 							Preguntas
 						</router-link>
-						<router-link to="/dashboard" class="navbar-item">
-							Dashboard
-						</router-link>
 						<router-link to='/login' v-if="!loged" class="navbar-item">
 							Iniciar Sesión
 						</router-link>
@@ -18,6 +15,9 @@
 						</router-link>
 						<router-link :to="'/profile/'+loged.uid" v-if="loged" class="navbar-item">
 							Perfil
+						</router-link>
+						<router-link to="/dashboard" class="navbar-item" v-if="isAdmin">
+							Dashboard
 						</router-link>
 						<div class="navbar-item" v-if="loged">
 							<button @click="handleLogout()" class="button is-warning">
@@ -52,6 +52,9 @@
 				<router-link :to="'/profile/'+loged.uid" v-if="loged" class="navbar-item">
 					Perfil
 				</router-link>
+				<router-link to="/dashboard" class="navbar-item" v-if="isAdmin">
+					Dashboard
+				</router-link>
 				<div class="navbar-item" v-if="loged">
 					<button @click="handleLogout()" class="button is-warning">
 						Cerrar Sesión
@@ -69,15 +72,22 @@ export default {
   name: 'Navbar',
   data() {
 	  return {
-		  loged: firebase.auth().currentUser
+		  loged: firebase.auth().currentUser,
+		  isAdmin: false
 	  }
   },
   beforeMount() {
-	  firebase.auth().onAuthStateChanged(user => {
-		  this.loged = firebase.auth().currentUser
-	  }, error => {
-		  console.log(error.message)
-	  })
+	firebase.auth().onAuthStateChanged(user => {
+		this.loged = firebase.auth().currentUser
+
+		let em = this.loged.email.split('@')[0]
+
+		firebase.database().ref(`/admins/emails/${em}`).on('value', r => {
+			this.isAdmin = r.val() == this.loged.email
+		})
+	}, error => {
+		console.log(error.message)
+	})
   },
   methods: {
 	  handleLogout() {

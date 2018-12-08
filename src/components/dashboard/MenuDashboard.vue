@@ -4,29 +4,21 @@
             General
         </p>
         <ul class="menu-list">
-            <li><a class="is-active">Dashboard</a></li>
+            <li><router-link to="/dashboard">Dashboard</router-link></li>
         </ul>
         <p class="menu-label">
-            Administration
+            Preguntas
         </p>
         <ul class="menu-list">
-            <li><a>Configuración de Equipo</a></li>
-            <li>
-                <a>Administrar equipo</a>
-                <ul>
-                    <li><a>Miembros</a></li>
-                    <li><a>Agregar un miembro</a></li>
-                </ul>
-            </li>
-            <li><a>Auntenticación</a></li>
+            <li><router-link to="/dashboard/view-questions">Ver preguntas</router-link></li>
+            <li><a>Verificar preguntas</a></li>
         </ul>
         <p class="menu-label">
-            Transacciones
+            Quizes
         </p>
         <ul class="menu-list">
-            <li><a>Pagos</a></li>
-            <li><a>Transferencias</a></li>
-            <li><a>Balance</a></li>
+            <li><a>Ver quizes</a></li>
+            <li><a>Crear quizes</a></li>
         </ul>
     </aside>
 </template>
