@@ -39,13 +39,6 @@ import SearchDashboard from '@/components/dashboard/SearchDashboard.vue'
 
 export default {
     name: 'Dashboard',
-    components: { EventsDashboard, MenuDashboard, MetricsDashboard, SearchDashboard },
-    data() {
-        return {
-            totalQuestions: 1122,
-            totalQuiz: 129,
-            totalUsers: 129
-        }
-    }
+    components: { EventsDashboard, MenuDashboard, MetricsDashboard, SearchDashboard }
 }
 </script>
