@@ -38,7 +38,7 @@ export default {
         }
     },
     beforeMount() {
-        this.totalQuestions = this.$store.state.questions.length
+        this.totalQuestions = this.$store.state.adminQuestions.length
     }
 }
 </script>
