@@ -68,7 +68,8 @@ export default {
                     content: this.content,
                     answers: this.answers,
                     category: this.category,
-                    experience: 10
+                    experience: 10,
+                    isActive: false
                 }).then(res => {
                     this.$toasted.show('Se ha agregado la pregunta exitosamente!', {
                         theme: "bubble", 
