@@ -13,7 +13,7 @@
           </div>
         </div>
       </div>
-      <div class="column">
+      <!-- <div class="column">
         <h2 class="subtitle is-2 has-text-centered">Quizes de la semana(proximamente)</h2>
         <div class="columns">
           <div class="column">
@@ -23,7 +23,7 @@
             <QuizCard name="Fisica" img="https://trinoceronte.files.wordpress.com/2014/12/thumb.jpg" />
           </div>
         </div>
-      </div>
+      </div> -->
     </div>
   </div>
 </template>

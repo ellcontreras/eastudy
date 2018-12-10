@@ -58,7 +58,6 @@ import firebase from 'firebase'
 import axios from 'axios'
 import ModalQuestion from '@/components/ModalQuestion.vue'
 import Activity from '@/components/Activity.vue'
-import url from '../utils/utils.js'
 
 export default {
     name: 'Profile',

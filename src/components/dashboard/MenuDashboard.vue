@@ -11,7 +11,7 @@
         </p>
         <ul class="menu-list">
             <li><router-link to="/dashboard/view-questions">Ver preguntas</router-link></li>
-            <li><a>Verificar preguntas</a></li>
+            <li><router-link to="/dashboard/verify-questions">Verificar preguntas</router-link></li>
         </ul>
         <p class="menu-label">
             Quizes

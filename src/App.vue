@@ -33,6 +33,7 @@ export default {
 
     if (this.$firebase.auth().currentUser) {
       let em = this.u.email.split('@')[0]
+      em.replace(/\./g, '-')
       this.$firebase.database().ref(`/admins/emails/${em}`).on('value', r => {
         if (r.val() == this.u.email) {
           this.$store.dispatch('SET_INIT_QUESTIONS_ADMIN')

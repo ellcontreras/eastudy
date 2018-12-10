@@ -32,27 +32,33 @@
 			<img id="logoHome" src="../assets/logo.png" alt="">
 		</div>
 	</div>
-	<nav class="navbar is-primary" v-else>
+	<nav class="navbar is-primary" v-else role="navigation" aria-label="main navigation">
 		<div class="navbar-brand">
-			<router-link to='/'>
+			<router-link @click="$router.push('/')" to="/home" class="navbar-item">
 				<img id="logo" src="../assets/logo.png" alt="">
 			</router-link>
+
+			<a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" @click="makeActiveNavbar()">
+				<span aria-hidden="true"></span>
+				<span aria-hidden="true"></span>
+				<span aria-hidden="true"></span>
+			</a>
 		</div>
-		<div class="navbar-menu">
+		<div class="navbar-menu" :class="{'is-active' : activeToggle}">
 			<div class="navbar-end">
-				<router-link to="/questions" class="navbar-item">
+				<router-link to="/questions" class="navbar-item" :class="{'has-text-grey-dark' : activeToggle}">
 					Preguntas
 				</router-link>
-				<router-link to='/login' v-if="!loged" class="navbar-item">
+				<router-link to='/login' v-if="!loged" class="navbar-item" :class="{'has-text-grey-dark' : activeToggle}">
 					Iniciar Sesión
 				</router-link>
-				<router-link to="/add-question" v-if="loged" class="navbar-item">
+				<router-link to="/add-question" v-if="loged" class="navbar-item" :class="{'has-text-grey-dark' : activeToggle}">
 					Agregar pregunta
 				</router-link>
-				<router-link :to="'/profile/'+loged.uid" v-if="loged" class="navbar-item">
+				<router-link :to="'/profile/'+loged.uid" v-if="loged" class="navbar-item" :class="{'has-text-grey-dark' : activeToggle}">
 					Perfil
 				</router-link>
-				<router-link to="/dashboard" class="navbar-item" v-if="isAdmin">
+				<router-link to="/dashboard" class="navbar-item" v-if="isAdmin" :class="{'has-text-grey-dark' : activeToggle}">
 					Dashboard
 				</router-link>
 				<div class="navbar-item" v-if="loged">
@@ -71,7 +77,8 @@ export default {
   data() {
 	  return {
 		  loged: this.$firebase.auth().currentUser,
-		  isAdmin: false
+		  isAdmin: false,
+		  activeToggle: false
 	  }
   },
   beforeMount() {
@@ -98,6 +105,9 @@ export default {
 		  })
 
 		  this.$forceUpdate()
+	  },
+	  makeActiveNavbar() {
+		  this.activeToggle = !this.activeToggle
 	  }
   }
 }
@@ -112,6 +122,7 @@ export default {
 		color: rgb(200, 200, 200);
 	}
 	#logo {
-		width: 200px;
+		width: 112px;
+		height: 28px;
 	}
 </style>

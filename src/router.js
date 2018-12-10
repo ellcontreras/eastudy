@@ -14,7 +14,6 @@ import ViewQuestions from '@/components/dashboard/ViewQuestions.vue'
 Vue.use(Router)
 
 export default new Router({
-  mode:'history',
   routes: [
     {
       path: '/',
@@ -66,6 +65,10 @@ export default new Router({
       name: '404 Page not found',
       component: PageNotFound
     },
+    {
+      path: '/home',
+      redirect: '/'
+    }
   ],
   linkActiveClass: 'is-active'
 })
