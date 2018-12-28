@@ -3,20 +3,22 @@
 $primary: #1d97c1;
 
 body {
-    background-color: whitesmoke !important;
+  background-color: whitesmoke !important;
 }
 
-.fade-enter-active, .fade-leave-active {
-    transition-property: opacity;
-    transition-duration: .5s;
+.fade-enter-active,
+.fade-leave-active {
+  transition-property: opacity;
+  transition-duration: 0.5s;
 }
 
 .fade-enter-active {
-    transition-delay: .5s;
+  transition-delay: 0.5s;
 }
 
-.fade-enter, .fade-leave-active {
-    opacity: 0
+.fade-enter,
+.fade-leave-active {
+  opacity: 0;
 }
 
 @import "../../node_modules/bulma/sass/utilities/_all.sass";
