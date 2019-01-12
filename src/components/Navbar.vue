@@ -21,12 +21,67 @@
     </div>
     <hr>
   </div>
+  <nav
+    class="navbar is-light"
+    v-else-if="$route.name == 'home'"
+    role="navigation"
+    aria-label="main navigation"
+  >
+    <div class="navbar-brand">
+      <a
+        role="button"
+        class="navbar-burger"
+        aria-label="menu"
+        aria-expanded="false"
+        @click="makeActiveNavbar()"
+      >
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
+    </div>
+    <div class="navbar-menu" :class="{'is-active' : activeToggle}">
+      <div class="navbar-end">
+        <router-link
+          to="/questions"
+          class="navbar-item"
+          :class="{'has-text-grey-dark' : activeToggle}"
+        >Preguntas</router-link>
+        <router-link
+          to="/login"
+          v-if="!loged"
+          class="navbar-item"
+          :class="{'has-text-grey-dark' : activeToggle}"
+        >Iniciar Sesión</router-link>
+        <router-link
+          to="/add-question"
+          v-if="loged"
+          class="navbar-item"
+          :class="{'has-text-grey-dark' : activeToggle}"
+        >Agregar pregunta</router-link>
+        <router-link
+          :to="'/profile/'+loged.uid"
+          v-if="loged"
+          class="navbar-item"
+          :class="{'has-text-grey-dark' : activeToggle}"
+        >Perfil</router-link>
+        <router-link
+          to="/dashboard"
+          class="navbar-item"
+          v-if="isAdmin"
+          :class="{'has-text-grey-dark' : activeToggle}"
+        >Dashboard</router-link>
+        <div class="navbar-item" v-if="loged">
+          <button @click="handleLogout()" class="button is-warning">Cerrar Sesión</button>
+        </div>
+      </div>
+    </div>
+  </nav>
   <nav class="navbar is-light" v-else role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
       <router-link @click="$router.push('/')" to="/home" class="navbar-item">
         <Logo where="navbar"/>
       </router-link>
-
       <a
         role="button"
         class="navbar-burger"
