@@ -1,128 +1,207 @@
 <template>
-	<div class="hero is-primary" v-if="$route.name == 'home'">
-		<div class="hero-head">
-			<nav class="navbar">
-				<div class="navbar-menu">
-					<div class="navbar-end">
-						<router-link to="/questions" class="navbar-item">
-							Preguntas
-						</router-link>
-						<router-link to='/login' v-if="!loged" class="navbar-item">
-							Iniciar Sesión
-						</router-link>
-						<router-link to="/add-question" v-if="loged" class="navbar-item">
-							Agregar pregunta
-						</router-link>
-						<router-link :to="'/profile/'+loged.uid" v-if="loged" class="navbar-item">
-							Perfil
-						</router-link>
-						<router-link to="/dashboard" class="navbar-item" v-if="isAdmin">
-							Dashboard
-						</router-link>
-						<div class="navbar-item" v-if="loged">
-							<button @click="handleLogout()" class="button is-warning">
-								Cerrar Sesión
-							</button>
-						</div>
-					</div>
-				</div>
-			</nav>
-		</div>
-		<div class="hero-body has-text-centered">
-			<img id="logoHome" src="../assets/logo.png" alt="">
-		</div>
-	</div>
-	<nav class="navbar is-primary" v-else role="navigation" aria-label="main navigation">
-		<div class="navbar-brand">
-			<router-link @click="$router.push('/')" to="/home" class="navbar-item">
-				<img id="logo" src="../assets/logo.png" alt="">
-			</router-link>
-
-			<a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" @click="makeActiveNavbar()">
-				<span aria-hidden="true"></span>
-				<span aria-hidden="true"></span>
-				<span aria-hidden="true"></span>
-			</a>
-		</div>
-		<div class="navbar-menu" :class="{'is-active' : activeToggle}">
-			<div class="navbar-end">
-				<router-link to="/questions" class="navbar-item" :class="{'has-text-grey-dark' : activeToggle}">
-					Preguntas
-				</router-link>
-				<router-link to='/login' v-if="!loged" class="navbar-item" :class="{'has-text-grey-dark' : activeToggle}">
-					Iniciar Sesión
-				</router-link>
-				<router-link to="/add-question" v-if="loged" class="navbar-item" :class="{'has-text-grey-dark' : activeToggle}">
-					Agregar pregunta
-				</router-link>
-				<router-link :to="'/profile/'+loged.uid" v-if="loged" class="navbar-item" :class="{'has-text-grey-dark' : activeToggle}">
-					Perfil
-				</router-link>
-				<router-link to="/dashboard" class="navbar-item" v-if="isAdmin" :class="{'has-text-grey-dark' : activeToggle}">
-					Dashboard
-				</router-link>
-				<div class="navbar-item" v-if="loged">
-					<button @click="handleLogout()" class="button is-warning">
-						Cerrar Sesión
-					</button>
-				</div>
-			</div>
-		</div>
-	</nav>
+  <div class="hero is-white" v-if="$route.name == 'home' && $store.state.user">
+    <div class="hero-head">
+      <nav class="navbar">
+        <div class="navbar-menu">
+          <div class="navbar-end">
+            <router-link to="/questions" class="navbar-item">Preguntas</router-link>
+            <router-link to="/login" v-if="!$store.state.user" class="navbar-item">Iniciar Sesión</router-link>
+            <router-link
+              to="/add-question"
+              v-if="$store.state.user"
+              class="navbar-item"
+            >Agregar pregunta</router-link>
+            <router-link
+              :to="'/profile/'+$store.state.user.uid"
+              v-if="$store.state.user"
+              class="navbar-item"
+            >Perfil</router-link>
+            <router-link to="/dashboard" class="navbar-item" v-if="$store.state.isAdmin">Dashboard</router-link>
+            <div class="navbar-item" v-if="$store.state.user">
+              <button @click="handleLogout()" class="button is-warning">Cerrar Sesión</button>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </div>
+    <div class="has-text-centered">
+      <Logo/>
+    </div>
+    <hr>
+  </div>
+  <nav
+    class="navbar is-white"
+    v-else-if="$route.name == 'home'"
+    role="navigation"
+    aria-label="main navigation"
+  >
+    <div class="navbar-brand">
+      <a
+        role="button"
+        class="navbar-burger"
+        aria-label="menu"
+        aria-expanded="false"
+        @click="makeActiveNavbar()"
+      >
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
+    </div>
+    <div class="navbar-menu" :class="{'is-active' : activeToggle}">
+      <div class="navbar-end">
+        <router-link
+          to="/questions"
+          class="navbar-item"
+          :class="{'has-text-grey-dark' : activeToggle}"
+        >Preguntas</router-link>
+        <router-link
+          to="/login"
+          v-if="!$store.state.user"
+          class="navbar-item"
+          :class="{'has-text-grey-dark' : activeToggle}"
+        >Iniciar Sesión</router-link>
+        <router-link
+          to="/add-question"
+          v-if="$store.state.user"
+          class="navbar-item"
+          :class="{'has-text-grey-dark' : activeToggle}"
+        >Agregar pregunta</router-link>
+        <router-link
+          :to="'/profile/'+$store.state.user.uid"
+          v-if="$store.state.user"
+          class="navbar-item"
+          :class="{'has-text-grey-dark' : activeToggle}"
+        >Perfil</router-link>
+        <router-link
+          to="/dashboard"
+          class="navbar-item"
+          v-if="$store.state.isAdmin"
+          :class="{'has-text-grey-dark' : activeToggle}"
+        >Dashboard</router-link>
+        <div class="navbar-item" v-if="$store.state.user">
+          <button @click="handleLogout()" class="button is-warning">Cerrar Sesión</button>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <nav class="navbar is-light" v-else role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+      <router-link @click="$router.push('/')" to="/home" class="navbar-item">
+        <Logo where="navbar"/>
+      </router-link>
+      <a
+        role="button"
+        class="navbar-burger"
+        aria-label="menu"
+        aria-expanded="false"
+        @click="makeActiveNavbar()"
+      >
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
+    </div>
+    <div class="navbar-menu" :class="{'is-active' : activeToggle}">
+      <div class="navbar-end">
+        <router-link
+          to="/questions"
+          class="navbar-item"
+          :class="{'has-text-grey-dark' : activeToggle}"
+        >Preguntas</router-link>
+        <router-link
+          to="/login"
+          v-if="!$store.state.user"
+          class="navbar-item"
+          :class="{'has-text-grey-dark' : activeToggle}"
+        >Iniciar Sesión</router-link>
+        <router-link
+          to="/add-question"
+          v-if="$store.state.user"
+          class="navbar-item"
+          :class="{'has-text-grey-dark' : activeToggle}"
+        >Agregar pregunta</router-link>
+        <router-link
+          :to="'/profile/'+$store.state.user.uid"
+          v-if="$store.state.user"
+          class="navbar-item"
+          :class="{'has-text-grey-dark' : activeToggle}"
+        >Perfil</router-link>
+        <router-link
+          to="/dashboard"
+          class="navbar-item"
+          v-if="$store.state.isAdmin"
+          :class="{'has-text-grey-dark' : activeToggle}"
+        >Dashboard</router-link>
+        <div class="navbar-item" v-if="$store.state.user">
+          <button @click="handleLogout()" class="button is-warning">Cerrar Sesión</button>
+        </div>
+      </div>
+    </div>
+  </nav>
 </template>
 
 <script>
+import Logo from "@/components/Logo.vue";
+
 export default {
-  name: 'Navbar',
+  name: "Navbar",
+  components: { Logo },
   data() {
-	  return {
-		  loged: this.$firebase.auth().currentUser,
-		  isAdmin: false,
-		  activeToggle: false
-	  }
+    return {
+      activeToggle: false
+    };
   },
   beforeMount() {
-	this.$firebase.auth().onAuthStateChanged(user => {
-		this.loged = this.$firebase.auth().currentUser
+    this.$firebase.auth().onAuthStateChanged(user => {
+      if (this.$store.state.user) {
+        let loged = this.$store.state.user;
 
-		let em = this.loged.email.split('@')[0]
+        let em = loged.user.email.split("@")[0];
 
-		this.$firebase.database().ref(`/admins/emails/${em}`).on('value', r => {
-			this.isAdmin = r.val() == this.loged.email
-		})
-	}, error => {
-		console.log(error.message)
-	})
+        this.$firebase
+          .database()
+          .ref(`/admins/emails/${em}`)
+          .on("value", r => {
+            this.$store.dispatch(
+              "SET_ADMIN",
+              r.val() == $store.state.user.email
+            );
+          });
+      }
+    });
   },
   methods: {
-	  handleLogout() {
-		  this.$firebase.auth().signOut().then(res => {
-			this.$toasted.show('Adiooooos!', {
-				theme: "bubble", 
-				position: "bottom-right", 
-				duration : 5000
-			})
-		  })
+    handleLogout() {
+      this.$firebase
+        .auth()
+        .signOut()
+        .then(res => {
+          this.$notify({
+            group: "eastudy",
+            title: "Adioos!",
+            text: "Te esperamos pronto!"
+          });
+        });
 
-		  this.$forceUpdate()
-	  },
-	  makeActiveNavbar() {
-		  this.activeToggle = !this.activeToggle
-	  }
+      this.$store.dispatch("SET_USER", null);
+      this.$store.dispatch("SET_ADMIN", false);
+
+      this.$forceUpdate();
+    },
+    makeActiveNavbar() {
+      this.activeToggle = !this.activeToggle;
+    }
   }
-}
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-	a {
-		color: white;
-	}
-	a:hover {
-		color: rgb(200, 200, 200);
-	}
-	#logo {
-		width: 112px;
-		height: 28px;
-	}
+a {
+  color: white;
+}
+a:hover {
+  color: rgb(200, 200, 200);
+}
 </style>

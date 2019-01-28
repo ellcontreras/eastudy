@@ -1,0 +1,80 @@
+<svg
+      xmlns="http://www.w3.org/2000/svg" width="335" height="380"
+    >
+      <g>
+        <rect fill="none" id="canvas_background" height="382" width="337" y="-1" x="-1"></rect>
+      </g>
+      <g class="layer">
+        <g id="svg_13">
+          <g id="svg_14">
+            <g id="svg_15">
+              <rect
+                y="80.24549"
+                x="49.070059"
+                width="128"
+                transform="rotate(-44.7357, 113.367, 109.472)"
+                stroke-width="5"
+                stroke-linejoin="null"
+                stroke-linecap="null"
+                stroke-dasharray="null"
+                id="svg_3"
+                height="58"
+                fill="#ff7f00"
+              ></rect>
+              <rect
+                y="233.249639"
+                x="200.195001"
+                width="132"
+                transform="rotate(-44.7357, 266.425, 261.591)"
+                stroke-width="5"
+                stroke-linejoin="null"
+                stroke-linecap="null"
+                stroke-dasharray="null"
+                id="svg_8"
+                height="56"
+                fill="#ff7f00"
+              ></rect>
+              <rect
+                y="147.012635"
+                x="174.6607"
+                width="75"
+                transform="rotate(-44.7357, 212.567, 175.058)"
+                stroke-width="5"
+                stroke-linejoin="null"
+                stroke-linecap="null"
+                stroke-dasharray="null"
+                id="svg_9"
+                height="56"
+                fill="#ff7f00"
+              ></rect>
+              <rect
+                y="-63.673087"
+                x="308.800661"
+                width="295"
+                transform="rotate(-44.7357, 222.225, 82.7472) matrix(0.00163335, -0.590492, 0.55847, 0.00172701, 228.83, 352.465)"
+                stroke-width="5"
+                stroke-linejoin="null"
+                stroke-linecap="null"
+                stroke-dasharray="null"
+                id="svg_11"
+                height="101"
+                fill="#ff7f00"
+              ></rect>
+              <rect
+                y="202.75678"
+                x="94.527435"
+                width="481"
+                transform="rotate(-44.7357, 118.275, 257.898) matrix(0, 0.564054, -0.665279, 0, 285.098, 68.9242)"
+                stroke-width="5"
+                stroke-linejoin="null"
+                stroke-linecap="null"
+                stroke-dasharray="null"
+                id="svg_12"
+                height="96"
+                fill="#ff7f00"
+              ></rect>
+            </g>
+          </g>
+        </g>
+      </g>
+    </svg>
