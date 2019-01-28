@@ -1,8 +1,9 @@
 @charset "utf-8";
 
 $primary: #00a8ff;
-$danger: #ff3300;
-$warning: #fbc531;
+$danger: #e54d42;
+$warning: #feb547;
+$success: #68cd86;
 
 body {
   background-color: white !important;
@@ -21,6 +22,58 @@ body {
 .fade-enter,
 .fade-leave-active {
   opacity: 0;
+}
+
+.material-icons.md-18 {
+  font-size: 18px;
+}
+.material-icons.md-24 {
+  font-size: 24px;
+}
+.material-icons.md-36 {
+  font-size: 36px;
+}
+.material-icons.md-48 {
+  font-size: 48px;
+}
+.material-icons.md-54 {
+  font-size: 54px;
+}
+.material-icons.md-big {
+  font-size: 200px;
+}
+
+.material-icons.md-primary {
+  color: $primary;
+}
+
+.material-icons.md-light {
+  color: #f5f5f5;
+}
+
+.notification-style {
+  // Style of the notification itself
+  padding: 10px;
+  margin: 0 5px 5px;
+
+  font-size: 20px;
+
+  color: white;
+  background: #44a4fc !important;
+  border-left: 5px solid #187fe7;
+  width: auto;
+
+  &.error {
+    background: $danger !important;
+  }
+
+  &.warn {
+    background: $warning !important;
+  }
+
+  &.success {
+    background: $success !important;
+  }
 }
 
 @import "../../node_modules/bulma/sass/utilities/_all.sass";
