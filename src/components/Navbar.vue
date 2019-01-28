@@ -1,15 +1,23 @@
 <template>
-  <div class="hero is-light" v-if="$route.name == 'home' && $firebase.auth().currentUser">
+  <div class="hero is-white" v-if="$route.name == 'home' && $store.state.user">
     <div class="hero-head">
       <nav class="navbar">
         <div class="navbar-menu">
           <div class="navbar-end">
             <router-link to="/questions" class="navbar-item">Preguntas</router-link>
-            <router-link to="/login" v-if="!loged" class="navbar-item">Iniciar Sesión</router-link>
-            <router-link to="/add-question" v-if="loged" class="navbar-item">Agregar pregunta</router-link>
-            <router-link :to="'/profile/'+loged.uid" v-if="loged" class="navbar-item">Perfil</router-link>
-            <router-link to="/dashboard" class="navbar-item" v-if="isAdmin">Dashboard</router-link>
-            <div class="navbar-item" v-if="loged">
+            <router-link to="/login" v-if="!$store.state.user" class="navbar-item">Iniciar Sesión</router-link>
+            <router-link
+              to="/add-question"
+              v-if="$store.state.user"
+              class="navbar-item"
+            >Agregar pregunta</router-link>
+            <router-link
+              :to="'/profile/'+$store.state.user.uid"
+              v-if="$store.state.user"
+              class="navbar-item"
+            >Perfil</router-link>
+            <router-link to="/dashboard" class="navbar-item" v-if="$store.state.isAdmin">Dashboard</router-link>
+            <div class="navbar-item" v-if="$store.state.user">
               <button @click="handleLogout()" class="button is-warning">Cerrar Sesión</button>
             </div>
           </div>
@@ -22,7 +30,7 @@
     <hr>
   </div>
   <nav
-    class="navbar is-light"
+    class="navbar is-white"
     v-else-if="$route.name == 'home'"
     role="navigation"
     aria-label="main navigation"
@@ -49,29 +57,29 @@
         >Preguntas</router-link>
         <router-link
           to="/login"
-          v-if="!loged"
+          v-if="!$store.state.user"
           class="navbar-item"
           :class="{'has-text-grey-dark' : activeToggle}"
         >Iniciar Sesión</router-link>
         <router-link
           to="/add-question"
-          v-if="loged"
+          v-if="$store.state.user"
           class="navbar-item"
           :class="{'has-text-grey-dark' : activeToggle}"
         >Agregar pregunta</router-link>
         <router-link
-          :to="'/profile/'+loged.uid"
-          v-if="loged"
+          :to="'/profile/'+$store.state.user.uid"
+          v-if="$store.state.user"
           class="navbar-item"
           :class="{'has-text-grey-dark' : activeToggle}"
         >Perfil</router-link>
         <router-link
           to="/dashboard"
           class="navbar-item"
-          v-if="isAdmin"
+          v-if="$store.state.isAdmin"
           :class="{'has-text-grey-dark' : activeToggle}"
         >Dashboard</router-link>
-        <div class="navbar-item" v-if="loged">
+        <div class="navbar-item" v-if="$store.state.user">
           <button @click="handleLogout()" class="button is-warning">Cerrar Sesión</button>
         </div>
       </div>
@@ -103,29 +111,29 @@
         >Preguntas</router-link>
         <router-link
           to="/login"
-          v-if="!loged"
+          v-if="!$store.state.user"
           class="navbar-item"
           :class="{'has-text-grey-dark' : activeToggle}"
         >Iniciar Sesión</router-link>
         <router-link
           to="/add-question"
-          v-if="loged"
+          v-if="$store.state.user"
           class="navbar-item"
           :class="{'has-text-grey-dark' : activeToggle}"
         >Agregar pregunta</router-link>
         <router-link
-          :to="'/profile/'+loged.uid"
-          v-if="loged"
+          :to="'/profile/'+$store.state.user.uid"
+          v-if="$store.state.user"
           class="navbar-item"
           :class="{'has-text-grey-dark' : activeToggle}"
         >Perfil</router-link>
         <router-link
           to="/dashboard"
           class="navbar-item"
-          v-if="isAdmin"
+          v-if="$store.state.isAdmin"
           :class="{'has-text-grey-dark' : activeToggle}"
         >Dashboard</router-link>
-        <div class="navbar-item" v-if="loged">
+        <div class="navbar-item" v-if="$store.state.user">
           <button @click="handleLogout()" class="button is-warning">Cerrar Sesión</button>
         </div>
       </div>
@@ -141,29 +149,27 @@ export default {
   components: { Logo },
   data() {
     return {
-      loged: this.$firebase.auth().currentUser,
-      isAdmin: false,
       activeToggle: false
     };
   },
   beforeMount() {
-    this.$firebase.auth().onAuthStateChanged(
-      user => {
-        this.loged = this.$firebase.auth().currentUser;
+    this.$firebase.auth().onAuthStateChanged(user => {
+      if (this.$store.state.user) {
+        let loged = this.$store.state.user;
 
-        let em = this.loged.email.split("@")[0];
+        let em = loged.user.email.split("@")[0];
 
         this.$firebase
           .database()
           .ref(`/admins/emails/${em}`)
           .on("value", r => {
-            this.isAdmin = r.val() == this.loged.email;
+            this.$store.dispatch(
+              "SET_ADMIN",
+              r.val() == $store.state.user.email
+            );
           });
-      },
-      error => {
-        console.log(error.message);
       }
-    );
+    });
   },
   methods: {
     handleLogout() {
@@ -171,12 +177,15 @@ export default {
         .auth()
         .signOut()
         .then(res => {
-          this.$toasted.show("Adiooooos!", {
-            theme: "bubble",
-            position: "bottom-right",
-            duration: 5000
+          this.$notify({
+            group: "eastudy",
+            title: "Adioos!",
+            text: "Te esperamos pronto!"
           });
         });
+
+      this.$store.dispatch("SET_USER", null);
+      this.$store.dispatch("SET_ADMIN", false);
 
       this.$forceUpdate();
     },
