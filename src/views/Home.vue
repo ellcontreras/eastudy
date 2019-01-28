@@ -1,15 +1,14 @@
 <template>
   <div>
-    <hr>
-    <div class="columns">
+    <div class="columns" v-if="$store.state.user">
       <div class="column is-two-thirds">
         <h2 class="subtitle is-2 has-text-centered">Categorias de estudio</h2>
         <div class="columns">
           <div class="column">
-            <CategoryCard name="Ciencias Naturales" color="primary" />
+            <CategoryCard name="Ciencias Naturales" color="primary"/>
           </div>
           <div class="column">
-            <CategoryCard name="Matemáticas" color="danger" />
+            <CategoryCard name="Matemáticas" color="danger"/>
           </div>
         </div>
       </div>
@@ -23,20 +22,20 @@
             <QuizCard name="Fisica" img="https://trinoceronte.files.wordpress.com/2014/12/thumb.jpg" />
           </div>
         </div>
-      </div> -->
+      </div>-->
     </div>
   </div>
 </template>
 
 <script>
-import CategoryCard from '@/components/CategoryCard.vue'
-import QuizCard from '@/components/QuizCard.vue'
+import CategoryCard from "@/components/CategoryCard.vue";
+import QuizCard from "@/components/QuizCard.vue";
 
 export default {
-  name: 'home',
+  name: "home",
   components: {
     CategoryCard,
     QuizCard
   }
-}
+};
 </script>
