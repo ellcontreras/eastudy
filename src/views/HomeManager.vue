@@ -1,5 +1,5 @@
 <template>
-  <home v-if="$firebase.auth().currentUser"/>
+  <home v-if="$store.state.user"/>
   <home-presentation v-else/>
 </template>
 
