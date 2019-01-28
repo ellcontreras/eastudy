@@ -20,7 +20,7 @@ export default new Vuex.Store({
     questions: [],
     adminQuestions: [],
     user: [],
-    isAdmin: false
+    isAdmin: Boolean
   },
   getters: {
     questionByCategory(state) {
