@@ -8,7 +8,7 @@
   },
   "dependencies": {
     "animate.css": "^3.6.1",
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "bulma": "^0.7.1",
     "es6-promise": "^4.2.5",
     "eva-icons": "^1.1.1",
